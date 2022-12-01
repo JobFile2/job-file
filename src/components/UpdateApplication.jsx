@@ -72,6 +72,7 @@ export default function UpdateApplication({ job, dispatch }) {
     //   });
 
     // unmount the component
+    document.getElementById('jobTable').style.pointerEvents = 'auto';
     unmountComponentAtNode(document.getElementById('updateDiv'));
   };
 
@@ -159,6 +160,7 @@ export default function UpdateApplication({ job, dispatch }) {
           id='cancelApp'
           type='submit'
           onClick={() => {
+            document.getElementById('jobTable').style.pointerEvents = 'auto';
             unmountComponentAtNode(document.getElementById('updateDiv'));
           }}
         >
