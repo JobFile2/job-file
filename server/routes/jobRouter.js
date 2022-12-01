@@ -5,16 +5,16 @@ const router = express.Router();
 
 // TODO: review isLoggedIn middleware
 
-router.post('/', jobController.createJob, (req,res) => {
+router.post('/', jobController.createJob, (req, res) => {
   res.status(200).json(res.locals.createdJob);
-})
+});
 
-router.delete('/:id', jobController.deleteJob, (req,res) => {
+router.delete('/:id', jobController.deleteJob, (req, res) => {
   res.status(200).json(res.locals.deletedJob);
-})
+});
 
-router.patch('/:id', jobController.updateJob, (req,res) => {
-  res.status(200).json(res.locals.updatedJob);
-})
+router.patch('/:id', jobController.updateJobApp, (req, res) => {
+  res.status(200).json(res.locals.updatedJobApp);
+});
 
 module.exports = router;
