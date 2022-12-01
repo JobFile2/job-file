@@ -1,16 +1,17 @@
 import React, { useReducer, useState, useEffect } from 'react';
 import { useInput } from '../hooks';
 import Job from './Job.jsx';
+import UpdateApplication from './UpdateApplication.jsx';
 import { useParams } from 'react-router-dom';
 
 export const ACTIONS = {
   ADD_APP: 'add-app',
-  DELETE_APP: 'delete-ap',
+  DELETE_APP: 'delete-app',
   INITIALIZE: 'initialize',
   UPDATE_STATUS: 'update-status'
 };
 
-function reducer (jobList, action) {
+export function reducer (jobList, action) {
   switch (action.type) {
     case ACTIONS.INITIALIZE:
       return [...action.payload.initialList]; // data passed in
@@ -64,7 +65,7 @@ const NewApplicationCreator = ({user}) => {
   const [phone, phoneNumberOnChange, resetPhone] = useInput('');
   const [contact_name, contactNameOnChange, resetContact] = useInput('');
   const [job_link, linkOnChange, resetLink] = useInput('');
-  const [status, statusOnChange, resetStatus] = useInput('');
+  const [status, statusOnChange, resetStatus] = useInput('Pending');
   const jobApp = {
     job_role,
     company_name,
@@ -78,6 +79,13 @@ const NewApplicationCreator = ({user}) => {
   const createApp = (e) => {
     e.preventDefault();
 
+    // for (const val of jobApp) {
+    //   if (val === '') {
+    //     window.alert('Invalid input fields');
+    //     console.log('in');
+    //     return;
+    //   }
+    // }
 
     console.log('entering fetch', jobApp);
     console.log('i am user id', user);
@@ -125,31 +133,34 @@ const NewApplicationCreator = ({user}) => {
             <input className="newApp-Field" type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" value={phone} onChange={phoneNumberOnChange} />
             <input className="newApp-Field" type="text" id="contactName" name="contactName" placeholder="Contact Name" value={contact_name} onChange={contactNameOnChange} />
             <input className="newApp-Field" type="text" id="link" name="link" placeholder="Job Posting URL" value={job_link} onChange={linkOnChange} />
-            <input className="newApp-Field" type="text" id="status" name="status" placeholder="Current Status" value={status} onChange={statusOnChange} />
+            <select className="newApp-Field" name="status" id="status" value={status} onChange={statusOnChange} >
+              <option value="Pending">Pending</option>
+              <option value="Accepted">Accepted</option>
+              <option value="Rejected">Rejected</option>
+            </select>
             <button className="button" id="createApp" type="submit" onClick={createApp}>Create Application</button>
           </form>
-        </div>
-          <table id="jobTable">
-            <thead id="tableHead">
-              <tr>
-                <th>JOB ROLE</th>
-                <th>COMPANY NAME</th>
-                <th>EMAIL</th>
-                <th>PHONE</th>
-                <th>CONTACT NAME</th>
-                <th>URL</th>
-                <th>STATUS</th>
-              </tr>
-            </thead>
-            <tbody>
-              {jobList.map(job => {
-                console.log('i am the key', job.job_id);
-                return <Job key={job.job_id} job={job} dispatch={dispatch}/>;
-              })}
-
-            </tbody>
-          </table>
-
+        </div> 
+        <div id='updateDiv'></div>
+        <table id="jobTable">
+          <thead id="tableHead">
+            <tr>
+              <th>JOB ROLE</th>
+              <th>COMPANY NAME</th>
+              <th>EMAIL</th>
+              <th>PHONE</th>
+              <th>CONTACT NAME</th>
+              <th>URL</th>
+              <th>STATUS</th>
+            </tr>
+          </thead>
+          <tbody>
+            {jobList.map(job => {
+              console.log('i am the key', job.job_id);
+              return <Job key={job.job_id} job={job} dispatch={dispatch}/>;
+            })}
+          </tbody>
+        </table>
       </div>
   );
 };

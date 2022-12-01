@@ -19,6 +19,14 @@
     "url": "https://github.com/JobFile/job-file/issues"
   },
   "homepage": "https://github.com/JobFile/job-file#readme",
+  "jest": {
+    "globalSetup": "./jest-setup.js",
+    "globalTeardown": "./jest-teardown.js",
+    "testEnvironment": "jest-environment-jsdom",
+    "setupFilesAfterEnv": [
+      "@testing-library/jest-dom/extend-expect"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.20.5",
     "@babel/preset-env": "^7.20.2",
@@ -35,16 +43,20 @@
     "webpack": "^5.75.0"
   },
   "dependencies": {
+    "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^13.4.0",
     "bcryptjs": "^2.3.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "jest-environment-jsdom": "^29.3.1",
     "pg": "^8.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.4.3",
+    "react-test-renderer": "^18.2.0",
     "redux": "^4.2.0",
+    "regenerator-runtime": "^0.13.11",
     "webpack-cli": "^5.0.0",
     "webpack-dev-server": "^4.11.1"
   }
