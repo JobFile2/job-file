@@ -53,6 +53,11 @@
   //   color: whitesmoke;
   border: rgb(12, 40, 52);
   backdrop-filter: saturate(180%) blur(10px);
+  position: fixed;
+  z-index: 100;
+  padding: 15% 1%;
+  box-sizing: border-box;
+  height: 100vh;
 }
 
 #jobTable {
