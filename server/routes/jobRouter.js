@@ -14,6 +14,7 @@ router.delete('/:id', jobController.deleteJob, (req, res) => {
 });
 
 router.patch('/:id', jobController.updateJobApp, (req, res) => {
+  console.log('FINAL RESPONSE IS: ', res.locals.updatedJobApp);
   res.status(200).json(res.locals.updatedJobApp);
 });
 

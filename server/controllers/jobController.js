@@ -103,42 +103,44 @@ jobController.deleteJob = async (req, res, next) => {
 // };
 
 jobController.updateJobApp = async (req, res, next) => {
+  console.log('WE ARE HERE');
   const { id } = req.params;
   console.log('request body', req.body);
   const {
-    newJobRole,
-    newCompanyName,
-    newPhone,
-    newEmail,
-    newContactName,
-    newJobLink,
-    newStatus,
+    job_role,
+    company_name,
+    email,
+    phone,
+    contact_name,
+    job_link,
+    status,
   } = req.body;
   console.log(
     'updates inputs are: ',
-    newJobRole,
-    newCompanyName,
-    newPhone,
-    newEmail,
-    newContactName,
-    newJobLink,
-    newStatus
+    job_role,
+    company_name,
+    email,
+    phone,
+    contact_name,
+    job_link,
+    status
   );
   const updateJobApp = `UPDATE jobs SET job_role = $2, company_name = $3, phone = $4, email = $5, contact_name = $6, job_link = $7, status = $8 WHERE job_id = $1 RETURNING *;`;
   const values = [
     id,
-    newJobRole,
-    newCompanyName,
-    newPhone,
-    newEmail,
-    newContactName,
-    newJobLink,
-    newStatus,
+    job_role,
+    company_name,
+    email,
+    phone,
+    contact_name,
+    job_link,
+    status,
   ];
 
   try {
     const updatedJobApp = await db.query(updateJobApp, values);
-    console.log('updateJobApp: ', updatedJobApp);
+    // console.log('updateJobApp: ', updatedJobApp);
+    console.log('updated App: ', updatedJobApp.rows[0]);
     res.locals.updatedJobApp = updatedJobApp.rows[0];
     console.log('response body: ', res.locals.updatedJobApp);
     return next();
