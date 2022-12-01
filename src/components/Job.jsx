@@ -20,6 +20,7 @@ export default function Job({ job, dispatch }) {
 
   function renderUpdateBox(job) {
     // render the update application div
+    document.getElementById('jobTable').style.pointerEvents = 'none';
     render(
       <UpdateApplication job={job} dispatch={dispatch} />,
       document.getElementById('updateDiv')

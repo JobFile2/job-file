@@ -127,6 +127,7 @@ const NewApplicationCreator = ({ user }) => {
 
   return (
     <div>
+      <div id='updateDiv'></div>
       <div className='newApplication'>
         <h2 id='newApp'>Please enter job application desription below:</h2>
         <form>
@@ -205,7 +206,6 @@ const NewApplicationCreator = ({ user }) => {
           </button>
         </form>
       </div>
-      <div id='updateDiv'></div>
       <table id='jobTable'>
         <thead id='tableHead'>
           <tr>
