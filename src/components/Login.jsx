@@ -48,7 +48,7 @@ const Login = ({ setUser }) => {
       setUser(userID);
       navigate(`/users/${userID}`);
     } else {
-      navigate(`/`);
+      return;
     }
     // .then((response) => {
     //   // if (response.status === 200) {
