@@ -42,10 +42,14 @@ const Login = ({ setUser }) => {
       method: 'GET',
       credentials: 'include',
     });
-    let userID = await response.json();
-    // console.log(userID);
-    setUser(userID);
-    navigate(`/users/${userID}`);
+    if (response.status === 200) {
+      let userID = await response.json();
+      // console.log(userID);
+      setUser(userID);
+      navigate(`/users/${userID}`);
+    } else {
+      return;
+    }
     // .then((response) => {
     //   // if (response.status === 200) {
     //   //   console.log('response is: ', response.json());
