@@ -125,7 +125,7 @@ jobController.updateJobApp = async (req, res, next) => {
     job_link,
     status
   );
-  const updateJobApp = `UPDATE jobs SET job_role = $2, company_name = $3, phone = $4, email = $5, contact_name = $6, job_link = $7, status = $8 WHERE job_id = $1 RETURNING *;`;
+  const updateJobApp = `UPDATE jobs SET job_role = $2, company_name = $3, email = $4, phone = $5, contact_name = $6, job_link = $7, status = $8 WHERE job_id = $1 RETURNING *;`;
   const values = [
     id,
     job_role,
